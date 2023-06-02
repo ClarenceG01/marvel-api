@@ -1,13 +1,78 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap");
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  height: fit-content;
+  color: #fff;
+  padding: 0.5rem 2rem;
+}
+.navigate {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navigate a {
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.3em 1em;
+}
+.navigate a:hover {
+  color: #fff;
+  background-color: rgb(237, 29, 36);
+  border-radius: 5px;
+  transition: 0.3s ease-out;
+}
+.logo {
+  width: 25%;
+  height: 100%;
+}
+.logo img {
+  width: 70%;
+  height: 100%;
+}
+.characters {
+  margin: 10rem auto;
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+.card {
+  cursor: pointer;
+  margin: 0 auto;
+  grid-column: span 1;
+  width: 100%;
+  height: 100%;
+  max-height: 40rem;
+}
+.card:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  transform: scale(1.05);
+  transition: 0.3s ease-in-out;
+}
+.card img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+  object-position: center;
+}
+.card h1 {
+  font-family: "Lexend", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1rem 1rem;
 }
