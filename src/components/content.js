@@ -1,27 +1,32 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { Navbar } from "./Navbar";
-export const Content = () => {
-  const [card, setCard] = useState([]);
-  const baseUrl =
-    "https://gateway.marvel.com/v1/public/characters?ts=1&apikey=cf5d21c3bd3c1209bf4b8d855300d07c&hash=70b04f1a596fe92d363e68db29d05085";
-  // read comics from the API
-  async function getComics() {
-    const response = await fetch(baseUrl);
-    const comics = await response.json();
-    // console.log(comics.data.results[0].name);
-    setCard(comics);
-  }
-  console.log(card);
-  useEffect(() => {
-    getComics();
-  }, []);
+import axios from "axios";
 
+// url
+const baseUrl =
+  "https://gateway.marvel.com/v1/public/characters?ts=1&apikey=26da265f577790e5afb28e8fdd1ed373&hash=4cafd195b5d4bc0124aac08707f5dd3d";
+export const Content = () => {
+  // store data in state
+  const [characters, setCharacters] = useState([]);
+  // fetch data from api
+  useEffect(() => {
+    const fetchItem = async () => {
+      try {
+        const response = await axios.get(baseUrl);
+        setCharacters(response.data.data.results);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchItem();
+  });
   return (
     <div>
       <Navbar />
       <div className="characters">
-        {/*{card.data.results.map((item) => {
+        {characters.map((item) => {
           return (
             <div className="card">
               <img
@@ -31,7 +36,7 @@ export const Content = () => {
               <h1>{item.name}</h1>
             </div>
           );
-        })} */}
+        })}
       </div>
     </div>
   );

@@ -5,9 +5,7 @@ import {
   Route,
   createRoutesFromElements,
   RouterProvider,
-  Router,
 } from "react-router-dom";
-import { Navbar } from "./components/Navbar";
 import { Content } from "./components/content";
 import { Events } from "./components/pages/Events";
 import { Stories } from "./components/pages/Stories";
