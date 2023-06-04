@@ -96,8 +96,22 @@
   object-fit: cover;
   object-position: center;
 }
+.page-title {
+  font-family: "Lexend", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 1rem 1rem;
+}
 .description {
   height: 100vh;
+  position: relative;
+}
+.description i {
+  color: rgb(237, 29, 36);
+  font-size: 2em;
+  position: absolute;
+  top: 1rem;
+  right: 5rem;
 }
 .description-card {
   margin: 0 auto;
@@ -106,6 +120,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 5em;
 }
 .description-card img {
   rotate: 20deg;
@@ -115,11 +130,20 @@
   object-position: center;
   margin-right: 4rem;
 }
-.details h1 {
+.description-card .details h1 {
   font-family: "Lexend", sans-serif;
   font-size: 2rem;
   font-weight: 600;
   margin: 1rem 1rem;
+}
+.card h5 {
+  font-family: "Lexend", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1rem 1rem;
+}
+.details h5 {
+  font-family: "Poppins", sans-serif;
 }
 .details p {
   font-family: "Poppins", sans-serif;

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Navbar } from "../Navbar";
 
 const baseUrl =
-  "https://gateway.marvel.com/v1/public/comics?ts=1&apikey=34fc91a3d879f19895b515d8273965f9&hash=6eef28334e4fdbf36b599dc91ce21ccf";
+  "https://gateway.marvel.com/v1/public/comics?ts=1&apikey=26da265f577790e5afb28e8fdd1ed373&hash=4cafd195b5d4bc0124aac08707f5dd3d";
 
 export const Comics = () => {
   const [comics, setComics] = useState([]);

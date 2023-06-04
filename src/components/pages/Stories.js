@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { Navbar } from "../Navbar";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import notfound from "../images/notfound.png";
+import { Navbar } from "../Navbar";
 import { ImageSlider } from "./ImageSlider";
 
 const baseUrl =
-  "https://gateway.marvel.com/v1/public/stories?ts=1&apikey=34fc91a3d879f19895b515d8273965f9&hash=6eef28334e4fdbf36b599dc91ce21ccf";
+  "https://gateway.marvel.com/v1/public/stories?ts=1&apikey=26da265f577790e5afb28e8fdd1ed373&hash=4cafd195b5d4bc0124aac08707f5dd3d";
 
 export const Stories = () => {
-  // store data in state
   const [stories, setStories] = useState([]);
-  // fetch data from api
+  const [selectedStory, setSelectedStory] = useState(null);
+  const navigate = useNavigate(); // Hook to navigate to the description route
+
   useEffect(() => {
-    const fetchItem = async () => {
+    const fetchItems = async () => {
       try {
         const response = await axios.get(baseUrl);
         setStories(response.data.data.results);
@@ -20,24 +23,31 @@ export const Stories = () => {
       }
     };
 
-    fetchItem();
-  });
+    fetchItems();
+  }, []);
+
+  const handleCardClick = (story) => {
+    setSelectedStory(story);
+    navigate("/storyDetails", { state: story }); // Navigate to the "/description" route when a card is clicked
+    console.log(story);
+  };
+
   return (
     <div>
       <Navbar />
       <ImageSlider />
+      <h1 className="page-title">Stories</h1>
       <div className="characters">
-        {stories.map((item) => {
-          return (
-            <div className="card">
-              {/* <img
-                src={item.thumbnail.path + "." + item.thumbnail.extension}
-                alt=""
-          /> */}
-              <h1>{item.id}</h1>
-            </div>
-          );
-        })}
+        {stories.map((story) => (
+          <div
+            key={story.id}
+            className="card"
+            onClick={() => handleCardClick(story)}
+          >
+            <img src={notfound} alt="" />
+            <h5>{story.title}</h5>
+          </div>
+        ))}
       </div>
     </div>
   );
