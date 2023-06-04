@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { Navbar } from "../Navbar";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { Navbar } from "../Navbar";
 
 const baseUrl =
-  "https://gateway.marvel.com/v1/public/events?ts=1&apikey=26da265f577790e5afb28e8fdd1ed373&hash=4cafd195b5d4bc0124aac08707f5dd3d";
+  "https://gateway.marvel.com/v1/public/comics?ts=1&apikey=34fc91a3d879f19895b515d8273965f9&hash=6eef28334e4fdbf36b599dc91ce21ccf";
+
 export const Comics = () => {
-  // store data in state
   const [comics, setComics] = useState([]);
-  // fetch data from api
+  const [selectedComic, setSelectedComic] = useState(null);
+  const navigate = useNavigate(); // Hook to navigate to the description route
+
   useEffect(() => {
-    const fetchItem = async () => {
+    const fetchItems = async () => {
       try {
         const response = await axios.get(baseUrl);
         setComics(response.data.data.results);
@@ -18,23 +21,32 @@ export const Comics = () => {
       }
     };
 
-    fetchItem();
-  });
+    fetchItems();
+  }, []);
+
+  const handleCardClick = (comic) => {
+    setSelectedComic(comic);
+    navigate("/comicsdetails", { state: comic }); // Navigate to the "/description" route when a card is clicked
+    console.log(comic);
+  };
+
   return (
     <div>
       <Navbar />
       <div className="characters">
-        {comics.map((item) => {
-          return (
-            <div className="card">
-              <img
-                src={item.thumbnail.path + "." + item.thumbnail.extension}
-                alt=""
-              />
-              <h1>{item.title}</h1>
-            </div>
-          );
-        })}
+        {comics.map((comic) => (
+          <div
+            key={comic.id}
+            className="card"
+            onClick={() => handleCardClick(comic)}
+          >
+            <img
+              src={comic.thumbnail.path + "." + comic.thumbnail.extension}
+              alt=""
+            />
+            <h1>{comic.title}</h1>
+          </div>
+        ))}
       </div>
     </div>
   );

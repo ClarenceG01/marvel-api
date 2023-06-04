@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "../Navbar";
 import axios from "axios";
+import { ImageSlider } from "./ImageSlider";
 
 const baseUrl =
-  "https://gateway.marvel.com/v1/public/stories?ts=1&apikey=26da265f577790e5afb28e8fdd1ed373&hash=4cafd195b5d4bc0124aac08707f5dd3d";
+  "https://gateway.marvel.com/v1/public/stories?ts=1&apikey=34fc91a3d879f19895b515d8273965f9&hash=6eef28334e4fdbf36b599dc91ce21ccf";
 
 export const Stories = () => {
   // store data in state
@@ -24,6 +25,7 @@ export const Stories = () => {
   return (
     <div>
       <Navbar />
+      <ImageSlider />
       <div className="characters">
         {stories.map((item) => {
           return (

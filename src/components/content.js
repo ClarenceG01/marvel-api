@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar } from "./Navbar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ImageSlider } from "./pages/ImageSlider";
 
-// url
 const baseUrl =
-  "https://gateway.marvel.com/v1/public/characters?ts=1&apikey=26da265f577790e5afb28e8fdd1ed373&hash=4cafd195b5d4bc0124aac08707f5dd3d";
+  "https://gateway.marvel.com/v1/public/characters?ts=1&apikey=34fc91a3d879f19895b515d8273965f9&hash=6eef28334e4fdbf36b599dc91ce21ccf";
+
 export const Content = () => {
-  // store data in state
   const [characters, setCharacters] = useState([]);
-  // fetch data from api
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const navigate = useNavigate(); // Hook to navigate to the description route
+
   useEffect(() => {
-    const fetchItem = async () => {
+    const fetchItems = async () => {
       try {
         const response = await axios.get(baseUrl);
         setCharacters(response.data.data.results);
@@ -20,23 +22,34 @@ export const Content = () => {
       }
     };
 
-    fetchItem();
-  });
+    fetchItems();
+  }, []);
+
+  const handleCardClick = (character) => {
+    setSelectedCharacter(character);
+    navigate("/description", { state: character }); // Navigate to the "/description" route when a card is clicked
+  };
+
   return (
     <div>
       <Navbar />
+      <ImageSlider />
       <div className="characters">
-        {characters.map((item) => {
-          return (
-            <div className="card">
-              <img
-                src={item.thumbnail.path + "." + item.thumbnail.extension}
-                alt=""
-              />
-              <h1>{item.name}</h1>
-            </div>
-          );
-        })}
+        {characters.map((character) => (
+          <div
+            key={character.id}
+            className="card"
+            onClick={() => handleCardClick(character)}
+          >
+            <img
+              src={
+                character.thumbnail.path + "." + character.thumbnail.extension
+              }
+              alt=""
+            />
+            <h1>{character.name}</h1>
+          </div>
+        ))}
       </div>
     </div>
   );
