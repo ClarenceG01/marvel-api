@@ -33,6 +33,7 @@ export const Comics = () => {
   return (
     <div>
       <Navbar />
+      <h1 className="page-title">Comics</h1>
       <div className="characters">
         {comics.map((comic) => (
           <div

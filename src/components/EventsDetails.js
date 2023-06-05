@@ -1,12 +1,16 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
+const goBack = () => {
+  window.history.back();
+};
 export const EventsDetails = () => {
   const location = useLocation();
   const selectedEvent = location.state;
   console.log(selectedEvent);
   return (
     <div className="description">
+      <i class="fa-solid fa-x" onClick={goBack}></i>
       {selectedEvent && (
         <div className="description-card">
           <img

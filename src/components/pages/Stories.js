@@ -35,7 +35,6 @@ export const Stories = () => {
   return (
     <div>
       <Navbar />
-      <ImageSlider />
       <h1 className="page-title">Stories</h1>
       <div className="characters">
         {stories.map((story) => (

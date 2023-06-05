@@ -34,6 +34,7 @@ export const Content = () => {
     <div>
       <Navbar />
       <ImageSlider />
+      <h1 className="page-title">Characters</h1>
       <div className="characters">
         {characters.map((character) => (
           <div

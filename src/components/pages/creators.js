@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Navbar } from "../Navbar";
 
 const baseUrl =
   "https://gateway.marvel.com/v1/public/creators?ts=1&apikey=26da265f577790e5afb28e8fdd1ed373&hash=4cafd195b5d4bc0124aac08707f5dd3d";
@@ -31,6 +32,8 @@ export const Creators = () => {
 
   return (
     <div>
+      <Navbar />
+      <h1 className="page-title">Creators</h1>
       <div className="characters">
         {creators.map((creator) => (
           <div

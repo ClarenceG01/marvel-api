@@ -1,12 +1,17 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 
+const goBack = () => {
+  window.history.back();
+};
+
 export const CreatorDetails = () => {
   const location = useLocation();
   const selectedCreator = location.state;
   console.log(selectedCreator.comics.items);
   return (
     <div className="description">
+      <i class="fa-solid fa-x" onClick={goBack}></i>
       {selectedCreator && (
         <div className="description-card">
           <img
